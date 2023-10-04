@@ -1,0 +1,78 @@
+{
+  "name": "goal-vscode",
+  "displayName": "goal-vscode",
+  "description": "先定一个小目标(Set a small goal first).",
+  "version": "0.0.1",
+  "author": "clanceyhuang",
+  "publisher": "c1anc3y",
+  "engines": {
+    "vscode": "^1.82.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "goal-vscode.addTodo",
+        "title": "goal-vscode.addTodo: 先定一个小目标"
+      },
+      {
+        "command": "goal-vscode.completeTodo",
+        "title": "goal-vscode.completeTodo: 达成一个小目标"
+      },
+      {
+        "command": "goal-vscode.removeTodo",
+        "title": "goal-vscode.removeTodo: 移除一个小目标"
+      },
+      {
+        "command": "goal-vscode.resetTodo",
+        "title": "goal-vscode.resetTodo: 重置一个小目标"
+      },
+      {
+        "command": "goal-vscode.showContextMenu",
+        "title": "goal-vscode.showContextMenu: 显示每个小目标的操作项"
+      }
+    ],
+    "views": {
+      "explorer": [
+        {
+          "id": "goal-vscode.todoApp",
+          "name": "小目标"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.2",
+    "@types/node": "18.x",
+    "@types/uuid": "^9.0.4",
+    "@types/vscode": "^1.82.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.3",
+    "@typescript-eslint/parser": "^6.7.3",
+    "@vscode/test-electron": "^2.3.4",
+    "eslint": "^8.50.0",
+    "glob": "^10.3.3",
+    "mocha": "^10.2.0",
+    "ts-loader": "^9.4.4",
+    "typescript": "^5.2.2",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "uuid": "^9.0.1"
+  }
+}
