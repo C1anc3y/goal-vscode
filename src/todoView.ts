@@ -11,8 +11,8 @@ export class TodoView implements vscode.TreeDataProvider<TodoItem> {
     this._onDidChangeTreeData.event;
 
   getTreeItem(element: TodoItem): vscode.TreeItem {
-    let diyLabel = `Event: ${element.text}, [Uuid: ${
-      element.uuid
+    let diyLabel = `Event: ${element.text}, [id: ${
+      element.id
     }, Created: ${element.createdAt.toLocaleString()}, Updated: ${element.updatedAt.toLocaleString()}]`;
 
     // const treeItem = new vscode.TreeItem(element.text);
@@ -63,26 +63,42 @@ export class TodoView implements vscode.TreeDataProvider<TodoItem> {
       .then((text) => {
         if (text) {
           this.todoList.addTodo(text);
-          this._onDidChangeTreeData.fire(null); // Notify that the data has changed
+          this.refresh();
         }
       });
   }
 
-  removeTodo(uuid: string): void {
-    this.todoList.removeTodo(uuid);
-    this._onDidChangeTreeData.fire(null); // Notify that the data has changed
+  /**
+   * 移除 todoItem
+   * @param id
+   */
+  removeTodo(id: number): void {
+    this.todoList.removeTodo(id);
+    this.refresh();
   }
 
-  completeTodo(uuid: string): void {
-    this.todoList.completeTodo(uuid);
-    this._onDidChangeTreeData.fire(null); // Notify that the data has changed
+  /**
+   * 完成 todoItem
+   * @param id
+   */
+  completeTodo(id: number): void {
+    this.todoList.completeTodo(id);
+    this.refresh();
   }
 
-  resetTodo(uuid: string): void {
-    this.todoList.resetTodo(uuid);
-    this._onDidChangeTreeData.fire(null); // Notify that the data has changed
+  /**
+   * 重置 todoItem 状态
+   * @param id
+   */
+  resetTodo(id: number): void {
+    this.todoList.resetTodo(id);
+    this.refresh();
   }
 
+  /**
+   * 点击 todoItem 触发相应操作
+   * @param todo
+   */
   clickTodo(todo: TodoItem): void {
     vscode.window
       .showQuickPick([todo.completed ? "Reset" : "Complete", "Remove"], {
@@ -90,11 +106,11 @@ export class TodoView implements vscode.TreeDataProvider<TodoItem> {
       })
       .then((action) => {
         if (action === "Complete") {
-          this.completeTodo(todo.uuid);
+          this.completeTodo(todo.id);
         } else if (action === "Reset") {
-          this.resetTodo(todo.uuid);
+          this.resetTodo(todo.id);
         } else if (action === "Remove") {
-          this.removeTodo(todo.uuid);
+          this.removeTodo(todo.id);
         }
       });
   }

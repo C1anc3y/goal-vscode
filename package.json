@@ -39,7 +39,7 @@
     "views": {
       "explorer": [
         {
-          "id": "goal-vscode.todoApp",
+          "id": "c1anc3y.goal-vscode.todoApp",
           "name": "小目标"
         }
       ]
@@ -59,7 +59,6 @@
   "devDependencies": {
     "@types/mocha": "^10.0.2",
     "@types/node": "18.x",
-    "@types/uuid": "^9.0.4",
     "@types/vscode": "^1.82.0",
     "@typescript-eslint/eslint-plugin": "^6.7.3",
     "@typescript-eslint/parser": "^6.7.3",
@@ -71,8 +70,5 @@
     "typescript": "^5.2.2",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4"
-  },
-  "dependencies": {
-    "uuid": "^9.0.1"
   }
 }

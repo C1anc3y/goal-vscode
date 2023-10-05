@@ -8,7 +8,7 @@
 
 ## Requirements
 
-依赖uuid，用于生成todoItem的uuid。
+---
 
 ## Extension Settings
 
@@ -23,3 +23,10 @@
 ✅ 初始版本，暂时只支持新增任务、完成任务、重置任务状态、移除任务。且当前版本只在本地存储数据。
 
 ---
+
+### 0.0.2
+
+修复问题：
+
+* VSCode重启后数据未存储。
+* 不使用UUID作为todoItem标识符。

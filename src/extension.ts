@@ -8,7 +8,7 @@ import { TodoItem } from "./todoItem";
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
   const todoView = new TodoView(context.extensionUri);
-  vscode.window.registerTreeDataProvider("goal-vscode.todoApp", todoView); // 一定要注册并绑定视图id，并且在package.json中声明
+  vscode.window.registerTreeDataProvider("c1anc3y.goal-vscode.todoApp", todoView); // 一定要注册并绑定视图id，并且在package.json中声明
 
   // Use the console to output diagnostic information (console.log) and errors (console.error)
   // This line of code will only be executed once when your extension is activated
@@ -31,17 +31,14 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand("goal-vscode.addTodo", () =>
       todoView.addTodo()
     ),
-    vscode.commands.registerCommand(
-      "goal-vscode.removeTodo",
-      (uuid: string) => todoView.removeTodo(uuid)
+    vscode.commands.registerCommand("goal-vscode.removeTodo", (id: number) =>
+      todoView.removeTodo(id)
     ),
-    vscode.commands.registerCommand(
-      "goal-vscode.resetTodo",
-      (uuid: string) => todoView.resetTodo(uuid)
+    vscode.commands.registerCommand("goal-vscode.resetTodo", (id: number) =>
+      todoView.resetTodo(id)
     ),
-    vscode.commands.registerCommand(
-      "goal-vscode.completeTodo",
-      (uuid: string) => todoView.completeTodo(uuid)
+    vscode.commands.registerCommand("goal-vscode.completeTodo", (id: number) =>
+      todoView.completeTodo(id)
     ),
     // 为每个 TodoItem 设置上下文菜单
     vscode.commands.registerCommand(
