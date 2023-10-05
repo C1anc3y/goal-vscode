@@ -2,7 +2,7 @@
   "name": "goal-vscode",
   "displayName": "goal-vscode",
   "description": "先定一个小目标(Set a small goal first).",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "clanceyhuang",
   "publisher": "c1anc3y",
   "engines": {
