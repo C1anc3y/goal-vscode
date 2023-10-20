@@ -3,19 +3,6 @@ import * as vscode from "vscode";
 import * as fs from "fs";
 import * as path from "path";
 
-// 读取用户配置
-const config = vscode.workspace.getConfiguration("goal-vscode");
-const saveOnFileSave = config.get("saveOnFileSave", false); // 默认值为 false
-
-// 根据用户配置来决定是否自动保存文件
-if (saveOnFileSave) {
-  // 执行自动保存文件的逻辑
-}
-// // 获取用户配置文件夹的路径，如果不存在则使用默认值
-// const userConfigFolder =
-//   vscode.workspace.workspaceFolders?.[0]?.uri.fsPath ||
-//   path.join(__dirname, "..", "defaultUserData");
-
 // 获取用户的配置文件夹路径
 const userConfigFolder = path.join(
   // 用户的主文件夹路径
@@ -29,9 +16,6 @@ if (!fs.existsSync(userConfigFolder)) {
 
 // 确定数据文件的完整路径
 const dataFilePath = path.join(userConfigFolder, "todoData.json");
-
-// 确定数据文件的完整路径
-// const dataFilePath = path.join(userConfigFolder, "goal-vscode.json"); // 使用你的插件名称
 
 // 保存数据到文件
 function saveDataToFile(data: any) {
@@ -57,15 +41,6 @@ function loadDataFromFile(): any {
   }
 }
 
-// // 获取用户配置
-// const config = vscode.workspace.getConfiguration("c1anc3y.goal-vscode"); // 使用你的插件名称
-
-// // 获取已保存的待办事项数据
-// const savedTodoData: TodoItem[] | undefined = config.get("todoData");
-
-// // 初始化待办事项数据
-// let todoData: TodoItem[] = savedTodoData || [];
-
 export class TodoList {
   private todos: TodoItem[] = loadDataFromFile() || [];
 
@@ -81,18 +56,12 @@ export class TodoList {
     );
 
     this.todos.push(newTodo);
-
-    // config.update("todoData", this.todos, vscode.ConfigurationTarget.Global);
     saveDataToFile(this.todos);
 
     return newTodo;
   }
 
   removeTodo(id: number): void {
-    // const index = this.todos.findIndex((todo) => todo.id === id);
-    // if (index !== -1) {
-    //   this.todos.splice(index, 1);
-    // }
     const todo = this.todos.find((todo) => todo.id === id);
     if (todo) {
       todo.disabled = true;
