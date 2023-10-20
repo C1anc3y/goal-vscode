@@ -1,6 +1,6 @@
 # goal-vscode
 
-先定一个小目标，Set a small goal first !!!
+先定一个小目标。
 
 ## Features
 
@@ -30,3 +30,10 @@
 
 * VSCode重启后数据未存储。
 * 不使用UUID作为todoItem标识符。
+
+### 0.1.1
+
+TODO: 版本功能，数据云端保存。
+
+1. 用户根据 github/邮箱 登录，获取token标识，同步数据。
+2. 根据用户常用待办信息，提取常用纬度指标，提取常用时间等，便于后续推荐。
